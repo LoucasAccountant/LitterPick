@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Litter Collection Truck</title>
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap');
+
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Target Text Styling */
+        .target-text {
+            font-family: 'Lobster', cursive;
+            font-size: 28px;
+            font-weight: bold;
+            color: #FAFB00; /* Updated to secondary brand color */
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Truck Container Styling */
+        .truck-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: #555;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* Truck Bed */
+        .truck-bed {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            width: 200px;
+            height: 100px;
+            background-color: #777;
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Rubbish Fill Styling */
+        .rubbish-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(180deg, #76c7c0, #34a085); /* Gradient Fill */
+            box-shadow: 0 0 10px rgba(52, 160, 133, 0.8); /* Subtle Glow */
+            transition: height 1s ease; /* Smooth Animation */
+        }
+
+        /* Wheels Styling */
+        .truck-wheel {
+            position: absolute;
+            bottom: -15px;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .truck-wheel.left {
+            left: 20px;
+        }
+
+        .truck-wheel.right {
+            right: 20px;
+        }
+
+        /* Progress Text */
+        .progress-label {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="target-text">Target 50kg</div> <!-- Target text with updated brand color -->
+
+    <div class="truck-container">
+        <div class="truck-bed">
+            <div class="rubbish-fill" id="rubbishFill" style="height: 0%;"></div>
+        </div>
+        <div class="truck-wheel left"></div>
+        <div class="truck-wheel right"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 kg of rubbish collected</div>
+
+    <script>
+        // Set your actual data
+        var totalWeightTarget = 50; // Updated target to 50 kg
+        var currentWeightCollected = 14.8; // Updated collected amount to 14.8 kg
+
+        function updateRubbishFill() {
+            var percentage = (currentWeightCollected / totalWeightTarget) * 100;
+            percentage = Math.min(percentage, 100); // Cap at 100%
+
+            // Update rubbish fill height
+            document.getElementById("rubbishFill").style.height = percentage + "%";
+
+            // Update the label text
+            document.getElementById("progressLabel").innerText = 
+                `${currentWeightCollected} kg of rubbish collected`;
+        }
+
+        // Call the update function
+        updateRubbishFill();
+    </script>
+</body>
+</html>
