@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Litter Collection Truck</title>
+    <title>Trash Can Tracker</title>
     <style>
         /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         /* General Styling */
         body {
@@ -35,58 +35,27 @@
                  1px  1px 0 #000; /* Black border effect using text shadows */
         }
 
-        /* Truck Container Styling */
-        .truck-container {
+        /* Trash Can Container Styling */
+        .trash-can-container {
             position: relative;
-            width: 300px;
-            height: 150px;
-            background-color: #555;
-            border-radius: 10px;
+            width: 150px;
+            height: 250px;
+            background-color: #777;
+            border-radius: 10px 10px 0 0;
             overflow: hidden;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
         }
 
-        /* Truck Bed */
-        .truck-bed {
+        /* Trash Fill Styling */
+        .trash-fill {
             position: absolute;
             bottom: 0;
-            left: 50px;
-            width: 200px;
-            height: 100px;
-            background-color: #777;
-            border-radius: 5px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Rubbish Fill Styling */
-        .rubbish-fill {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
-            background: linear-gradient(180deg, #76c7c0, #34a085); /* Gradient Fill */
-            box-shadow: 0 0 10px rgba(52, 160, 133, 0.8); /* Subtle Glow */
+            background: #FAFB00; /* Yellow Trash Bags */
+            border-radius: 0 0 10px 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Subtle inner shadow */
             transition: height 1s ease; /* Smooth Animation */
-        }
-
-        /* Wheels Styling */
-        .truck-wheel {
-            position: absolute;
-            bottom: -15px;
-            width: 40px;
-            height: 40px;
-            background-color: #333;
-            border-radius: 50%;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .truck-wheel.left {
-            left: 20px;
-        }
-
-        .truck-wheel.right {
-            right: 20px;
         }
 
         /* Progress Text */
@@ -101,12 +70,8 @@
 <body>
     <div class="target-text">Target 50kg</div> <!-- Target text with yellow color and black border -->
 
-    <div class="truck-container">
-        <div class="truck-bed">
-            <div class="rubbish-fill" id="rubbishFill" style="height: 0%;"></div>
-        </div>
-        <div class="truck-wheel left"></div>
-        <div class="truck-wheel right"></div>
+    <div class="trash-can-container">
+        <div class="trash-fill" id="trashFill" style="height: 0%;"></div>
     </div>
     <div class="progress-label" id="progressLabel">0 kg of rubbish collected</div>
 
@@ -115,12 +80,12 @@
         var totalWeightTarget = 50; // Updated target to 50 kg
         var currentWeightCollected = 14.8; // Updated collected amount to 14.8 kg
 
-        function updateRubbishFill() {
+        function updateTrashFill() {
             var percentage = (currentWeightCollected / totalWeightTarget) * 100;
             percentage = Math.min(percentage, 100); // Cap at 100%
 
-            // Update rubbish fill height
-            document.getElementById("rubbishFill").style.height = percentage + "%";
+            // Update trash fill height
+            document.getElementById("trashFill").style.height = percentage + "%";
 
             // Update the label text
             document.getElementById("progressLabel").innerText = 
@@ -128,7 +93,7 @@
         }
 
         // Call the update function
-        updateRubbishFill();
+        updateTrashFill();
     </script>
 </body>
 </html>
