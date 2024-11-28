@@ -65,7 +65,7 @@
     </style>
 </head>
 <body>
-    <div class="target-text">Target 50kg (That is the same as the Complete Encyclopedia Britannica Collection)(</div> <!-- Target text with green color and black border -->
+    <div class="target-text">Target 50kg(</div> <!-- Target text with green color and black border -->
 
     <div class="trash-can-container">
         <div class="trash-fill" id="trashFill" style="height: 0%;"></div>
@@ -78,7 +78,7 @@
         var currentWeightCollected = 65.9; // Updated collected amount to 86.5 kg
 
         function updateTrashFill() {
-            var percentage = (currentWeightCollected / totalWeightTarget) * 100;
+            var percentage = (currentWeightCollected / totalWeightTarget) * 50;
             percentage = Math.min(percentage, 100); // Cap at 100%
 
             // Update trash fill height
