@@ -1,97 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trash Can Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* General Styling */
-        body {
-            font-family: 'Libre Franklin', sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        /* Target Text Styling with Black Border */
-        .target-text {
-            font-size: 28px;
-            font-weight: bold;
-            color: #0a8701; /* Secondary brand color */
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            text-shadow: 
-                -1px -1px 0 #000,  
-                 1px -1px 0 #000,
-                -1px  1px 0 #000,
-                 1px  1px 0 #000; /* Black border effect using text shadows */
-        }
-
-        /* Trash Can Container Styling */
-        .trash-can-container {
-            position: relative;
-            width: 150px;
-            height: 250px;
-            background-color: #777;
-            border-radius: 10px 10px 0 0;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-
-        /* Trash Fill Styling */
-        .trash-fill {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: #0a8701; /* Green Trash Bags */
-            border-radius: 0 0 10px 10px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Subtle inner shadow */
-            transition: height 1s ease; /* Smooth Animation */
-        }
-
-        /* Progress Text */
-        .progress-label {
-            text-align: center;
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trash Can Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Libre Franklin', sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.target-text {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0a8701;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+.trash-can-container {
+  position: relative;
+  width: 150px;
+  height: 250px;
+  background-color: #777;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+.trash-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #0a8701;
+  border-radius: 0 0 10px 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: height 1s ease;
+  height: 0%;
+}
+.progress-label {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+</style>
 </head>
 <body>
-    <div class="target-text">Target 100kg</div> <!-- Target text with green color and black border -->
+  <div class="target-text">Target 100kg</div>
+  <div class="trash-can-container">
+    <div class="trash-fill" id="trashFill"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">0 kg of rubbish collected</div>
 
-    <div class="trash-can-container">
-        <div class="trash-fill" id="trashFill" style="height: 47.47%;"></div>
-    </div>
-    <div class="progress-label" id="progressLabel">47.47 kg of rubbish collected</div>
+<script>
+  // Set your actual data
+  var totalWeightTarget = 100; // Target (kg)
+  var currentWeightCollected = 0; // Update this value dynamically as needed
 
-    <script>
-        // Set your actual data
-        var totalWeightTarget = 100; // Updated target to 100 kg
-        var currentWeightCollected = 0; // Updated collected amount to 47.47 kg
+  function updateTrashFill() {
+    // Calculate percentage
+    var percentage = Math.min((currentWeightCollected / totalWeightTarget) * 100, 100);
+    // Set trash can fill
+    document.getElementById('trashFill').style.height = percentage + '%';
+    // Set label
+    document.getElementById('progressLabel').textContent = currentWeightCollected + ' kg of rubbish collected';
+  }
 
-        function updateTrashFill() {
-            var percentage = (currentWeightCollected / totalWeightTarget) * 100;
-            percentage = Math.min(percentage, 100); // Cap at 100%
+  // Call the function once to initialize
+  updateTrashFill();
 
-            // Update trash fill height
-            document.getElementById("trashFill").style.height = percentage + "%";
-
-            // Update the label text
-            document.getElementById("progressLabel").innerText = 
-                `${currentWeightCollected} kg of rubbish collected`;
-        }
-
-        // Call the update function
-        updateTrashFill();
-    </script>
+  // Example: If you want to update the fill dynamically, you can do:
+  // currentWeightCollected = 47.47;
+  // updateTrashFill();
+</script>
 </body>
 </html>
-
